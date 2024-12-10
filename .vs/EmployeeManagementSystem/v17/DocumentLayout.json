@@ -3,8 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{55B9C99F-206E-42A1-8461-C969F4173B8B}|ServerLibrary\\ServerLibrary.csproj|c:\\users\\janwa\\source\\repos\\employeemanagementsystem\\serverlibrary\\repositoies\\implementations\\useraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55B9C99F-206E-42A1-8461-C969F4173B8B}|ServerLibrary\\ServerLibrary.csproj|solutionrelative:serverlibrary\\repositoies\\implementations\\useraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55B9C99F-206E-42A1-8461-C969F4173B8B}|ServerLibrary\\ServerLibrary.csproj|c:\\users\\janwa\\source\\repos\\employeemanagementsystem\\serverlibrary\\repositoies\\contracts\\iuseraccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55B9C99F-206E-42A1-8461-C969F4173B8B}|ServerLibrary\\ServerLibrary.csproj|solutionrelative:serverlibrary\\repositoies\\contracts\\iuseraccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EF99D4F-1297-459E-9581-6437083A4504}|Server\\Server.csproj|c:\\users\\janwa\\source\\repos\\employeemanagementsystem\\server\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EF99D4F-1297-459E-9581-6437083A4504}|Server\\Server.csproj|solutionrelative:server\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB5E340D-57A1-47FB-BE78-58EE74569EFC}|BaseLibrary\\BaseLibrary.csproj|c:\\users\\janwa\\source\\repos\\employeemanagementsystem\\baselibrary\\dtos\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB5E340D-57A1-47FB-BE78-58EE74569EFC}|BaseLibrary\\BaseLibrary.csproj|solutionrelative:baselibrary\\dtos\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{55B9C99F-206E-42A1-8461-C969F4173B8B}|ServerLibrary\\ServerLibrary.csproj|c:\\users\\janwa\\source\\repos\\employeemanagementsystem\\serverlibrary\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55B9C99F-206E-42A1-8461-C969F4173B8B}|ServerLibrary\\ServerLibrary.csproj|solutionrelative:serverlibrary\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB5E340D-57A1-47FB-BE78-58EE74569EFC}|BaseLibrary\\BaseLibrary.csproj|c:\\users\\janwa\\source\\repos\\employeemanagementsystem\\baselibrary\\entities\\refreshtokeninfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB5E340D-57A1-47FB-BE78-58EE74569EFC}|BaseLibrary\\BaseLibrary.csproj|solutionrelative:baselibrary\\entities\\refreshtokeninfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB5E340D-57A1-47FB-BE78-58EE74569EFC}|BaseLibrary\\BaseLibrary.csproj|c:\\users\\janwa\\source\\repos\\employeemanagementsystem\\baselibrary\\entities\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB5E340D-57A1-47FB-BE78-58EE74569EFC}|BaseLibrary\\BaseLibrary.csproj|solutionrelative:baselibrary\\entities\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB5E340D-57A1-47FB-BE78-58EE74569EFC}|BaseLibrary\\BaseLibrary.csproj|c:\\users\\janwa\\source\\repos\\employeemanagementsystem\\baselibrary\\entities\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB5E340D-57A1-47FB-BE78-58EE74569EFC}|BaseLibrary\\BaseLibrary.csproj|solutionrelative:baselibrary\\entities\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +58,106 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "IUserAccount.cs",
+              "DocumentMoniker": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\ServerLibrary\\Repositoies\\Contracts\\IUserAccount.cs",
+              "RelativeDocumentMoniker": "ServerLibrary\\Repositoies\\Contracts\\IUserAccount.cs",
+              "ToolTip": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\ServerLibrary\\Repositoies\\Contracts\\IUserAccount.cs",
+              "RelativeToolTip": "ServerLibrary\\Repositoies\\Contracts\\IUserAccount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T15:48:13.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RefreshToken.cs",
+              "DocumentMoniker": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\BaseLibrary\\DTOs\\RefreshToken.cs",
+              "RelativeDocumentMoniker": "BaseLibrary\\DTOs\\RefreshToken.cs",
+              "ToolTip": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\BaseLibrary\\DTOs\\RefreshToken.cs",
+              "RelativeToolTip": "BaseLibrary\\DTOs\\RefreshToken.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T15:47:47.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\ServerLibrary\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "ServerLibrary\\Data\\AppDbContext.cs",
               "ToolTip": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\ServerLibrary\\Data\\AppDbContext.cs",
               "RelativeToolTip": "ServerLibrary\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T13:35:37.159Z",
+              "WhenOpened": "2024-12-08T15:46:51.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RefreshTokenInfo.cs",
+              "DocumentMoniker": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\BaseLibrary\\Entities\\RefreshTokenInfo.cs",
+              "RelativeDocumentMoniker": "BaseLibrary\\Entities\\RefreshTokenInfo.cs",
+              "ToolTip": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\BaseLibrary\\Entities\\RefreshTokenInfo.cs",
+              "RelativeToolTip": "BaseLibrary\\Entities\\RefreshTokenInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T15:46:03.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\Server\\Controllers\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\AuthenticationController.cs",
+              "ToolTip": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\Server\\Controllers\\AuthenticationController.cs",
+              "RelativeToolTip": "Server\\Controllers\\AuthenticationController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCQAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T15:40:05.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\BaseLibrary\\Entities\\UserRole.cs",
+              "RelativeDocumentMoniker": "BaseLibrary\\Entities\\UserRole.cs",
+              "ToolTip": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\BaseLibrary\\Entities\\UserRole.cs",
+              "RelativeToolTip": "BaseLibrary\\Entities\\UserRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T15:23:22.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\BaseLibrary\\Entities\\Employee.cs",
+              "RelativeDocumentMoniker": "BaseLibrary\\Entities\\Employee.cs",
+              "ToolTip": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\BaseLibrary\\Entities\\Employee.cs",
+              "RelativeToolTip": "BaseLibrary\\Entities\\Employee.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAA5wBIAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T15:23:09.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserAccountRepository.cs",
+              "DocumentMoniker": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\ServerLibrary\\Repositoies\\Implementations\\UserAccountRepository.cs",
+              "RelativeDocumentMoniker": "ServerLibrary\\Repositoies\\Implementations\\UserAccountRepository.cs",
+              "ToolTip": "C:\\Users\\janwa\\source\\repos\\EmployeeManagementSystem\\ServerLibrary\\Repositoies\\Implementations\\UserAccountRepository.cs",
+              "RelativeToolTip": "ServerLibrary\\Repositoies\\Implementations\\UserAccountRepository.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAswB8AAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T14:26:46.084Z",
               "EditorCaption": ""
             }
           ]
