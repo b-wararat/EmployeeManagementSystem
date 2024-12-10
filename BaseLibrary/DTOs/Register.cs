@@ -10,7 +10,7 @@ namespace BaseLibrary.DTOs
         [MaxLength(100)]
         public string? Fullname { get; set; }
 
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.Password)]
         [Compare(nameof(Password))]
         [Required]
         public string? ConfirmPassword { get; set; }
