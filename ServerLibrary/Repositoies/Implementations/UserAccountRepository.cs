@@ -108,10 +108,10 @@ namespace ServerLibrary.Repositoies.Implementations
             };
 
             var token = new JwtSecurityToken(
-                    issuer: jwtSection.Value.Issure,
+                    issuer: jwtSection.Value.Issuer,
                     audience: jwtSection.Value.Audience,
                     claims: userClaims,
-                    expires: DateTime.Now.AddDays(1),
+                    expires: DateTime.Now.AddMicroseconds(1),
                     signingCredentials: credentials
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -122,14 +122,14 @@ namespace ServerLibrary.Repositoies.Implementations
         {
             return await dbContext.UserRoles.Where(w => w.UserId == userId)
                 .Join(dbContext.SystemRoles, user => user.RoleId, role => role.Id, (user, role) => new { user, role })
-                .Select(s => s.role.Name).FirstOrDefaultAsync() ?? string.Empty;
+                .Select(s => s.role.Name).FirstOrDefaultAsync();
         }
 
         private static string GenerateRefreshToken() => Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
 
         private async Task<ApplicationUser> FindUserByEmailAsync(string email) =>
             await dbContext.ApplicationUsers
-            .FirstOrDefaultAsync(w => w.Email!.ToLower() == email!.ToLower()) ?? new ApplicationUser();
+            .FirstOrDefaultAsync(w => w.Email!.ToLower() == email!.ToLower());
         
         private async Task<T> AddToDatabase<T>(T model) {
             var result = dbContext.Add(model!);
