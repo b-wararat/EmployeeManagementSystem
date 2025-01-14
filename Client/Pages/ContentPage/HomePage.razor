@@ -1,0 +1,12 @@
+﻿@page "/home/dashboard"
+
+<Client.Pages.AdministrationPage.TableBanner />
+<Client.Pages.DepartmentPage.GeneralDepartmentPage/>
+
+@code{
+    [CascadingParameter] public Task<AuthenticationState> AuthenticationState { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        await accountService.CheckUserAuthentication(AuthenticationState);
+    }
+}

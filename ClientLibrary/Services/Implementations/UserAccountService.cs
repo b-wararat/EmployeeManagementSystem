@@ -2,6 +2,8 @@
 using BaseLibrary.Responses;
 using ClientLibrary.Helpers;
 using ClientLibrary.Services.Contracts;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
 
 namespace ClientLibrary.Services.Implementations
@@ -9,9 +11,11 @@ namespace ClientLibrary.Services.Implementations
     public class UserAccountService : IUserAccountService
     {
         private readonly GetHttpClient getHttpClient;
-        public UserAccountService(GetHttpClient getHttpClient)
+        private readonly NavigationManager navManager;
+        public UserAccountService(GetHttpClient getHttpClient, NavigationManager navManager)
         {
             this.getHttpClient = getHttpClient;
+            this.navManager = navManager;
         }
         public async Task<GeneralResponse> CreateAsync(Register user)
         {
@@ -40,6 +44,20 @@ namespace ClientLibrary.Services.Implementations
             var result = await httpClient.PostAsJsonAsync($"{Constants.AuthUrl}/refresh-token", token);
             if (!result.IsSuccessStatusCode) return new LoginResponse(false, "Error occured");
             return await result.Content.ReadFromJsonAsync<LoginResponse>();
+        }
+
+        public async Task CheckUserAuthentication(Task<AuthenticationState> authenticationState)
+        {
+            var user = (await authenticationState).User;
+            var isLogin = user.Identity!.IsAuthenticated;
+
+            if (isLogin)
+            {
+                navManager.NavigateTo("/home/dashboard");
+            }
+            else {
+                navManager.NavigateTo("/identity/account/login");
+            }
         }
     }
 }

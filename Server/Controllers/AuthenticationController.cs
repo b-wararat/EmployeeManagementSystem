@@ -21,6 +21,9 @@ namespace Server.Controllers
         public async Task<IActionResult> CreateAsync(Register user) {
             if (user is null) return BadRequest("Model is empty");
             var result = await userAccount.CreateAsync(user);
+            if (!result.Flag) {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
 
@@ -29,6 +32,10 @@ namespace Server.Controllers
         {
             if (user is null) return BadRequest("Model is empty");
             var result = await userAccount.SignInAsync(user);
+            if (!result.Flag)
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
 
@@ -37,6 +44,10 @@ namespace Server.Controllers
         {
             if (token is null) return BadRequest("Model is empty");
             var result = await userAccount.RefreshTokenAsync(token);
+            if (!result.Flag)
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
     }
