@@ -12,6 +12,10 @@
 		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
+		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="28.1.38" />
+		<PackageReference Include="Syncfusion.Blazor.Core" Version="28.1.38" />
+		<PackageReference Include="Syncfusion.Blazor.Popups" Version="28.1.38" />
+		<PackageReference Include="Syncfusion.Blazor.Themes" Version="28.1.38" />
 	</ItemGroup>
 
 	<ItemGroup>

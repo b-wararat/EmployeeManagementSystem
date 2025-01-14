@@ -1,6 +1,7 @@
 ﻿
 using BaseLibrary.DTOs;
 using BaseLibrary.Responses;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace ClientLibrary.Services.Contracts
 {
@@ -10,5 +11,6 @@ namespace ClientLibrary.Services.Contracts
         Task<LoginResponse> SignInAsync(Login user);
         Task<LoginResponse> RefreshTokenAsync(RefreshToken token);
         Task<WeatherForecast[]> GetWeatherForecast();
+        Task CheckUserAuthentication(Task<AuthenticationState> authenticationState);
     }
 }
