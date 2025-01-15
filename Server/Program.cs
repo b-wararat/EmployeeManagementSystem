@@ -1,3 +1,4 @@
+using BaseLibrary.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -45,6 +46,14 @@ builder.Services.AddAuthentication(option => {
 builder.Services.Configure<JwtSection>(builder.Configuration.GetSection("JwtSection"));
 
 builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
+builder.Services.AddScoped<IGenericRepository<Department>, DepartmentRepo>();
+builder.Services.AddScoped<IGenericRepository<GeneralDepartment>, GeneralDepartmentRepo>();
+builder.Services.AddScoped<IGenericRepository<Branch>, BranchRepo>();
+builder.Services.AddScoped<IGenericRepository<City>, CityRepo>();
+builder.Services.AddScoped<IGenericRepository<Country>, CountryRepo>();
+builder.Services.AddScoped<IGenericRepository<Town>, TownRepo>();
+
+
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowBlazorWasm",
         builder => builder.WithOrigins("http://localhost:5151", "https://localhost:7075")

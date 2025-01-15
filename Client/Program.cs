@@ -29,6 +29,7 @@ builder.Services.AddScoped<IUserAccountService, UserAccountService>();
 
 builder.Services.AddScoped<DepartmentState>();
 
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF5cXmBCfEx3Rnxbf1x1ZFRGalhQTndWUiweQnxTdEBjWH5acXRRR2JdU0Z+Ww==");
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddScoped<SfDialogService>();
 
