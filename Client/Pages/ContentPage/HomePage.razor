@@ -1,7 +1,11 @@
 ﻿@page "/home/dashboard"
 
-<Client.Pages.AdministrationPage.TableBanner />
-<Client.Pages.DepartmentPage.GeneralDepartmentPage/>
+<TableBanner />
+<GeneralDepartmentPage/>
+<DepartmentPage/>
+<BranchPage/>
+<CountryPage/>
+<CityPage/>
 
 @code{
     [CascadingParameter] public Task<AuthenticationState> AuthenticationState { get; set; }
