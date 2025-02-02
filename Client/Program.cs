@@ -1,3 +1,4 @@
+using BaseLibrary.Entities;
 using Blazored.LocalStorage;
 using Client;
 using Client.ApplicationState;
@@ -26,8 +27,18 @@ builder.Services.AddScoped<GetHttpClient>();
 builder.Services.AddScoped<LocalStorageService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+//General Department / Department /Branch
+builder.Services.AddScoped<IGenericService<GeneralDepartment>, GenericService<GeneralDepartment>>();
+builder.Services.AddScoped<IGenericService<Department>, GenericService<Department>>();
+builder.Services.AddScoped<IGenericService<Branch>, GenericService<Branch>>();
+//Country / City / Town
+builder.Services.AddScoped<IGenericService<Country>, GenericService<Country>>();
+builder.Services.AddScoped<IGenericService<City>, GenericService<City>>();
+builder.Services.AddScoped<IGenericService<Town>, GenericService<Town>>();
+//Employee
+builder.Services.AddScoped<IGenericService<Employee>, GenericService<Employee>>();
 
-builder.Services.AddScoped<DepartmentState>();
+builder.Services.AddScoped<AllState>(); 
 
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF5cXmBCfEx3Rnxbf1x1ZFRGalhQTndWUiweQnxTdEBjWH5acXRRR2JdU0Z+Ww==");
 builder.Services.AddSyncfusionBlazor();

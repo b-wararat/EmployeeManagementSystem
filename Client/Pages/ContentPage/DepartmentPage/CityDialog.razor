@@ -1,0 +1,82 @@
+﻿<SfDialog Width="280px" IsModal="true" ShowCloseIcon="true" @bind-Visible="IsVisible">
+    <DialogEvents OnOpen="OpenDialog"></DialogEvents>
+    <DialogTemplates>
+        <Header> @Title City</Header>
+        <Content>
+            <EditForm Model="city" Enhance OnSubmit="Save">
+                <div class="card border-success">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Id</label>
+                            <input @bind="city.Id" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <InputText @bind-Value="city.Name" class="form-control" />
+                        </div>
+                        <div class="form-group mt-3 mb-3">
+                            <label class="form-label">Select Country</label>
+                            @if (city.Country is not null)
+                            {
+                                string selected = city.Country!.Name;
+                                <SfDropDownList TValue="string" TItem="Country" Placeholder="@selected" DataSource="countries">
+                                    <DropDownListFieldSettings Value="Id" Text="Name"></DropDownListFieldSettings>
+                                    <DropDownListEvents TValue="string" TItem="Country" ValueChange="OnValueChange"></DropDownListEvents>
+                                </SfDropDownList>
+                            }
+                            else
+                            {
+                                <SfDropDownList TValue="string" TItem="Country" Placeholder="Select General Deapartment" DataSource="countries">
+                                    <DropDownListFieldSettings Value="Id" Text="Name"></DropDownListFieldSettings>
+                                    <DropDownListEvents TValue="string" TItem="Country" ValueChange="OnValueChange"></DropDownListEvents>
+                                </SfDropDownList>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        </Content>
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="SAVE" Type="ButtonType.Submit" IsPrimary="true" OnClick="Save" />
+    </DialogButtons>
+
+</SfDialog>
+
+
+@code {
+    [Parameter] public City city { get; set; } = new();
+    [Parameter] public List<Country> countries { get; set; } = new();
+    [Parameter] public EventCallback<City> handleSaveOperationEvent { get; set; }
+
+    private bool IsVisible { get; set; } = false;
+    public string Title { get; set; } = "Add";
+
+    public void OpenDialog()
+    {
+        IsVisible = true;
+        StateHasChanged();
+    }
+
+    private async void Save()
+    {
+        if (string.IsNullOrEmpty(city.Name) || city.CountryId <= 0)
+        {
+            await dialogService.AlertAsync("You need to provide city name.", "Alert!");
+        }
+        else
+        {
+            await handleSaveOperationEvent.InvokeAsync(city);
+        }
+    }
+
+    public void ChangeTitle(string title)
+    {
+        Title = title;
+    }
+
+    public void OnValueChange(ChangeEventArgs<string, Country> args)
+    {
+        city.CountryId = int.Parse(args.Value);
+    }
+}
