@@ -1,4 +1,5 @@
 ﻿using BaseLibrary.DTOs;
+using BaseLibrary.Entities;
 using BaseLibrary.Responses;
 using ClientLibrary.Helpers;
 using ClientLibrary.Services.Contracts;
@@ -31,12 +32,6 @@ namespace ClientLibrary.Services.Implementations
             if (!result.IsSuccessStatusCode) return new LoginResponse(false, "Error occured");
             return await result.Content.ReadFromJsonAsync<LoginResponse>();
         }
-        public async Task<WeatherForecast[]> GetWeatherForecast()
-        {
-            var httpClient = await getHttpClient.GetPrivateHttpClient();
-            var result = await httpClient.GetFromJsonAsync<WeatherForecast[]>($"{Constants.WeatherForecastUrl}/");
-            return result!;
-        }
 
         public async Task<LoginResponse> RefreshTokenAsync(RefreshToken token)
         {
@@ -46,7 +41,7 @@ namespace ClientLibrary.Services.Implementations
             return await result.Content.ReadFromJsonAsync<LoginResponse>();
         }
 
-        public async Task CheckUserAuthentication(Task<AuthenticationState> authenticationState)
+        public async Task CheckUserAuthentication(Task<AuthenticationState> authenticationState, bool fromRegister = false)
         {
             var user = (await authenticationState).User;
             var isLogin = user.Identity!.IsAuthenticated;
@@ -56,8 +51,45 @@ namespace ClientLibrary.Services.Implementations
                 navManager.NavigateTo("/home/dashboard");
             }
             else {
-                navManager.NavigateTo("/identity/account/login");
+                if (fromRegister)
+                {
+                    navManager.NavigateTo("/identity/account/register");
+                }
+                else
+                {
+                    navManager.NavigateTo("/identity/account/login");
+                }
             }
+        }
+
+        public async Task<List<ManageUser>> GetUsersAsync()
+        {
+            var httpClient = await getHttpClient.GetPrivateHttpClient();
+            var result = await httpClient.GetFromJsonAsync<List<ManageUser>>($"{Constants.AuthUrl}/users");
+            return result!;
+        }
+
+        public async Task<List<SystemRole>> GetRoles()
+        {
+            var httpClient = await getHttpClient.GetPrivateHttpClient();
+            var result = await httpClient.GetFromJsonAsync<List<SystemRole>>($"{Constants.AuthUrl}/roles");
+            return result!;
+        }
+
+        public async Task<GeneralResponse> UpdateUser(ManageUser manageUser)
+        {
+            var httpClient = await getHttpClient.GetPrivateHttpClient();
+            var result = await httpClient.PutAsJsonAsync($"{Constants.AuthUrl}/update-user", manageUser);
+            if (!result.IsSuccessStatusCode) return new GeneralResponse(false, "Error occured");
+            return await result.Content.ReadFromJsonAsync<GeneralResponse>();
+        }
+
+        public async Task<GeneralResponse> DeleteUser(int id)
+        {
+            var httpClient = await getHttpClient.GetPrivateHttpClient();
+            var result = await httpClient.DeleteAsync($"{Constants.AuthUrl}/delete-user/{id}");
+            if (!result.IsSuccessStatusCode) return new GeneralResponse(false, "Error occured");
+            return await result.Content.ReadFromJsonAsync<GeneralResponse>();
         }
     }
 }

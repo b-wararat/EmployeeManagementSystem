@@ -65,7 +65,7 @@
 
     protected async override Task OnInitializedAsync()
     {
-        await accountService.CheckUserAuthentication(AuthenticationState);
+        await accountService.CheckUserAuthentication(AuthenticationState, true);
     }
     async Task HandleRegistration()
     {

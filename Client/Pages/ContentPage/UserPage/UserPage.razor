@@ -1,15 +1,14 @@
-﻿@implements IDisposable
-@if (allState.ShowCity)
+﻿@using System.Security.Claims
+@implements IDisposable
+
+@if (allState.ShowUser)
 {
     <div class="continer mt-5">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="float-start">City</h4>
-                        <button class="btn btn-outline-success float-end" @onclick="AddButtonClicked">
-                            <i class="bi bi-plus-circle-dotted"></i> Add City
-                        </button>
+                        <h4 class="float-start">Manage Users</h4>
                     </div>
                     <div class="card-header" style="max-height:580px; overflow-x:hidden; overflow-y:scroll">
                         <div class="card-body">
@@ -18,36 +17,47 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Id</th>
-                                        <th scope="col">Country</th>
-                                        <th scope="col">City</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Role</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (cities?.Any() == true)
+                                    @if (manageUsers?.Any() == true)
                                     {
                                         int count = 1;
-                                        foreach (var item in cities)
+                                        @foreach (var item in manageUsers)
                                         {
                                             <tr>
                                                 <th scope="row">@count</th>
-                                                <td>@item.Id</td>
-                                                <td>@item.Country!.Name</td>
+                                                <td>@item.UserId</td>
                                                 <td>@item.Name</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.Role</td>
                                                 <td>
-                                                    <i class="bi bi-pencil text-info" id="cursorStyle" @onclick="() => EditClicked(item)"></i>
-                                                    <i class="bi bi-trash text-danger" id="cursorStyle" @onclick="() => DeleteCliked(item)"></i>
+                                                    @if (role == Roles.Admin)
+                                                    {
+                                                        <i class="bi bi-pencil text-info" id="cursorStyle" @onclick="() => EditClicked(item)"></i>
+                                                        <i class="bi bi-trash text-danger" id="cursorStyle" @onclick="() => DeleteCliked(item)"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <text>-</text>
+                                                    }
                                                 </td>
                                             </tr>
                                             count++;
                                         }
+
+
                                     }
                                     else
                                     {
                                         <tr>
                                             <td colspan="4">
                                                 <div class="alert alert-info text-center">
-                                                    No City added yet!
+                                                    No User added yet!
                                                 </div>
                                             </td>
                                         </tr>
@@ -62,97 +72,96 @@
     </div>
 }
 
-<CityDialog @ref="cityDialog"
-                  handleSaveOperationEvent="HandleSaveOperationEvent"
-                  city="city"
-                  countries="countries" />
+<UserDialog @ref="userDialog"
+            handleSaveOperationEvent="HandleSaveOperationEvent"
+            manageUser="manageuser"
+            systemRoles="systemRoles" />
 <style>
-    .curserStyle{
+    .curserStyle {
         cursor: pointer;
     }
 </style>
 @code {
-    public string Title = "Add";
-    CityDialog? cityDialog;
-    City city = new();
-    public List<Country> countries { get; set; } = new();
-    public List<City> cities { get; set; } = new();
+    UserDialog? userDialog;
+    ManageUser manageuser = new();
+    string? role;
+    public List<ManageUser> manageUsers { get; set; } = new();
+    public List<SystemRole> systemRoles { get; set; } = new();
+    public async Task GetRoleAsync()
+    {
+        var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
+        var user = await customAuthStateProvider.GetMyUser();
+        role = user!.Role;
+
+    }
 
     protected async override Task OnInitializedAsync()
     {
-        await GetCities();
-        await GetCountries();
+        await GetUsers();
+        await GetRoles();
+        await GetRoleAsync();
         allState.Action += StateHasChanged;
     }
     void OpenDialog()
     {
-        if (cityDialog is not null)
+        if (userDialog is not null)
         {
-            cityDialog.OpenDialog();
+            userDialog.OpenDialog();
         }
         else
         {
-            Console.WriteLine("cityDialog is null!");
+            Console.WriteLine("userDialog is null!");
         }
     }
     public void Dispose()
     {
         allState.Action -= StateHasChanged;
     }
-    private async Task HandleSaveOperationEvent(City item)
+    private async Task HandleSaveOperationEvent(ManageUser item)
     {
         bool successCheck = false;
 
-        if (item.Id == 0)
-        {
-            var result = await cityService.Insert(item, Constants.CityUrl);
-            successCheck = await DisplayMessage(result.Flag, result.Message);
-        }
-        else
-        {
-            var result = await cityService.Update(item, Constants.CityUrl);
-            successCheck = await DisplayMessage(result.Flag, result.Message);
-        }
+        var result = await accountService.UpdateUser(item);
+        successCheck = await DisplayMessage(result.Flag, result.Message);
+
         if (successCheck)
         {
-            city = new();
-            await GetCities();
-            cityDialog?.ChangeTitle("Add");
+            manageuser = new();
+            await GetUsers();
         }
     }
 
-    private async Task GetCities()
+    private async Task GetUsers()
     {
-        cities = await cityService.GetAll(Constants.CityUrl);
+        manageUsers = await accountService.GetUsersAsync();
     }
-    private async Task GetCountries()
+    private async Task GetRoles()
     {
-        countries = await countryService.GetAll(Constants.CountryUrl);
+        systemRoles = await accountService.GetRoles();
     }
 
     private async void AddButtonClicked()
     {
-        await GetCountries();
+        await GetRoles();
         await InvokeAsync(StateHasChanged);
-        cityDialog?.ChangeTitle("Add");
-        city = new();
+        manageuser = new();
         OpenDialog();
-        await GetCities();
+        await GetUsers();
     }
-    private async void EditClicked(City item)
+    private async void EditClicked(ManageUser item)
     {
-        cityDialog?.ChangeTitle("Update");
-        city = item;
+        manageuser = item;
         OpenDialog();
-        await GetCities();
+        await GetUsers();
+        await InvokeAsync(StateHasChanged);
     }
-    private async void DeleteCliked(City item)
+    private async void DeleteCliked(ManageUser item)
     {
         bool confirm = await dialogService.ConfirmAsync($"Are you sure wanna delete {item.Name}?", "Confirm Delete");
         if (!confirm) return;
-        var response = await cityService.DeleteById(item.Id, Constants.CityUrl);
+        var response = await accountService.DeleteUser(item.UserId);
         await DisplayMessage(response.Flag, response.Message);
-        if (response.Flag) await GetCities();
+        if (response.Flag) await GetUsers();
         await InvokeAsync(StateHasChanged);
     }
 
@@ -167,4 +176,3 @@
         return true;
     }
 }
-

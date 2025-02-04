@@ -1,4 +1,6 @@
 ﻿using BaseLibrary.DTOs;
+using BaseLibrary.Entities;
+using ClientLibrary.Services.Contracts;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,11 +10,18 @@ namespace ClientLibrary.Helpers
     public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly LocalStorageService localStorageService;
+        private readonly IUserAccountService accountService;
         private readonly ClaimsPrincipal anonymous = new(new ClaimsIdentity());
-        public CustomAuthenticationStateProvider(LocalStorageService localStorageService)
+        public CustomAuthenticationStateProvider(LocalStorageService localStorageService, IUserAccountService accountService)
         {
             this.localStorageService = localStorageService;
+            this.accountService = accountService;
         }
+        public async Task<CustomUserClaims> GetMyUser() {
+            var stringToken = await localStorageService.GetToken() ?? string.Empty;
+            var deserizlizetToken = Serializations.DeseruzlizeJsonString<UserSession>(stringToken);
+            return DecryptToken(deserizlizetToken.Token!);
+        } 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var stringToken = await localStorageService.GetToken();

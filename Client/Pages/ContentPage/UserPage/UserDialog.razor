@@ -1,0 +1,74 @@
+﻿<SfDialog Width="280px" IsModal="true" ShowCloseIcon="true" @bind-Visible="IsVisible">
+    <DialogEvents OnOpen="OpenDialog"></DialogEvents>
+    <DialogTemplates>
+        <Header> Update User</Header>
+        <Content>
+            <EditForm Model="manageUser" Enhance OnSubmit="Save">
+                <div class="card border-success">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input @bind="manageUser.Name" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <InputText @bind-Value="manageUser.Email" class="form-control" />
+                        </div>
+                        <div class="form-group mt-3 mb-3">
+                            <label class="form-label">Select Roel</label>
+                            @if (!string.IsNullOrEmpty(manageUser.Role))
+                            {
+                                string selected = manageUser.Role;
+                                <SfDropDownList TValue="string" TItem="SystemRole" Placeholder="@selected" DataSource="systemRoles">
+                                    <DropDownListFieldSettings Value="Id" Text="Name"></DropDownListFieldSettings>
+                                    <DropDownListEvents TValue="string" TItem="SystemRole" ValueChange="OnValueChange"></DropDownListEvents>
+                                </SfDropDownList>
+                            }
+                            else
+                            {
+                                <SfDropDownList TValue="string" TItem="SystemRole" Placeholder="Select Role" DataSource="systemRoles">
+                                    <DropDownListFieldSettings Value="Id" Text="Name"></DropDownListFieldSettings>
+                                    <DropDownListEvents TValue="string" TItem="SystemRole" ValueChange="OnValueChange"></DropDownListEvents>
+                                </SfDropDownList>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        </Content>
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="SAVE" Type="ButtonType.Submit" IsPrimary="true" OnClick="Save" />
+    </DialogButtons>
+
+</SfDialog>
+
+@code {
+    [Parameter] public ManageUser manageUser { get; set; } = new();
+    [Parameter] public List<SystemRole> systemRoles { get; set; } = new();
+    [Parameter] public EventCallback<ManageUser> handleSaveOperationEvent { get; set; }
+    private bool IsVisible { get; set; } = false;
+
+    public void OpenDialog()
+    {
+        IsVisible = true;
+        StateHasChanged();
+    }
+
+    async void Save()
+    {
+        if (string.IsNullOrEmpty(manageUser.Name) || string.IsNullOrEmpty(manageUser.Role))
+        {
+            await dialogService.AlertAsync("You need to provide Role name.", "Alert!");
+        }
+        else
+        {
+            await handleSaveOperationEvent.InvokeAsync(manageUser);
+        }
+    }
+
+    public void OnValueChange(ChangeEventArgs<string, SystemRole> args)
+    {
+        manageUser.Role = args.Value.ToString();
+    }
+}

@@ -42,6 +42,10 @@ builder.Services.AddAuthentication(option => {
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSection!.Key))
     };
 });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(Constants.Admin, policy => policy.RequireRole(Constants.Admin));
+});
 
 builder.Services.Configure<JwtSection>(builder.Configuration.GetSection("JwtSection"));
 
@@ -52,6 +56,8 @@ builder.Services.AddScoped<IGenericRepository<Branch>, BranchRepo>();
 builder.Services.AddScoped<IGenericRepository<City>, CityRepo>();
 builder.Services.AddScoped<IGenericRepository<Country>, CountryRepo>();
 builder.Services.AddScoped<IGenericRepository<Town>, TownRepo>();
+builder.Services.AddScoped<IGenericRepository<Employee>, EmployeeRepo>();
+
 
 
 builder.Services.AddCors(options => {
