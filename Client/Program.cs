@@ -40,7 +40,7 @@ builder.Services.AddScoped<IGenericService<Employee>, GenericService<Employee>>(
 
 builder.Services.AddScoped<AllState>(); 
 
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF5cXmBCfEx3Rnxbf1x1ZFRGalhQTndWUiweQnxTdEBjWH5acXRRR2JdU0Z+Ww==");
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("");
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddScoped<SfDialogService>();
 
